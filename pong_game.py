@@ -1,4 +1,5 @@
 import turtle
+import time
 
 wn = turtle.Screen() #Create a screen
 wn.title("Pong by @Spandan")
@@ -32,6 +33,9 @@ ball.color("white")
 ball.penup() #Turtle draws a line which we do not want
 ball.goto(0,0)
 
+ball.dx = 0.2 # ball movement in x-axis by 2 pixels
+ball.dy = -0.2 # ball movement in y-axis by 2 pixels
+
 #Function
 def paddle_a_up():
     y = paddle_a.ycor() #Returns the y-coordinate and assigns it to y variable
@@ -63,3 +67,20 @@ wn.onkeypress(paddle_b_down, "Down")
 #Main game loop - Every game has it
 while True:
     wn.update()
+    
+    # Move the ball
+    ball.setx(ball.xcor() + ball.dx)
+    ball.sety(ball.ycor() + ball.dy)
+    
+    # Border checking
+    if ball.ycor() > 290:
+        ball.sety(290)
+        ball.dy *= -1 #reverses the direction of the ball
+        
+    if ball.ycor() < -290:
+        ball.sety(-290)
+        ball.dy *= -1 
+    
+    if ball.xcor() > 390:
+        ball.goto(0,0) #Since, the ball will go out of the game. It should come to the centre
+        ball.dx *= -1
