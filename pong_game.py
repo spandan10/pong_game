@@ -1,5 +1,7 @@
 import turtle
 import time
+# import os (for linux and mac)
+import winsound
 
 wn = turtle.Screen() #Create a screen
 wn.title("Pong by @Spandan")
@@ -89,11 +91,14 @@ while True:
     if ball.ycor() > 290:
         ball.sety(290)
         ball.dy *= -1 #reverses the direction of the ball
+#         os.system("afplay bounce.wav&") -- linux/Mac
+        winsound.PlaySound("bounce.wav", winsound.SND_ASYNC)
         
     if ball.ycor() < -290:
         ball.sety(-290)
         ball.dy *= -1 
-    
+        winsound.PlaySound("bounce.wav", winsound.SND_ASYNC)
+        
     if ball.xcor() > 390:
         ball.goto(0,0) #Since, the ball will go out of the game. It should come to the centre
         ball.dx *= -1
@@ -112,7 +117,9 @@ while True:
     if (ball.xcor() > 340 and ball.xcor() < 350) and (ball.ycor() < paddle_b.ycor() + 40 and ball.ycor() > paddle_b.ycor() -40):
         ball.setx(340)
         ball.dx *=-1
+        winsound.PlaySound("bounce.wav", winsound.SND_ASYNC)
         
     if (ball.xcor() < -340 and ball.xcor() > -350) and (ball.ycor() < paddle_a.ycor() + 40 and ball.ycor() > paddle_a.ycor() -40):
         ball.setx(-340)
         ball.dx *=-1
+        winsound.PlaySound("bounce.wav", winsound.SND_ASYNC)
