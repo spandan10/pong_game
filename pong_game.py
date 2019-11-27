@@ -84,3 +84,16 @@ while True:
     if ball.xcor() > 390:
         ball.goto(0,0) #Since, the ball will go out of the game. It should come to the centre
         ball.dx *= -1
+    
+    if ball.xcor() < -390:
+        ball.goto(0,0) #Since, the ball will go out of the game. It should come to the centre
+        ball.dx *= -1
+        
+    # Paddle and ball collision
+    if (ball.xcor() > 340 and ball.xcor() < 350) and (ball.ycor() < paddle_b.ycor() + 40 and ball.ycor() > paddle_b.ycor() -40):
+        ball.setx(340)
+        ball.dx *=-1
+        
+    if (ball.xcor() < -340 and ball.xcor() > -350) and (ball.ycor() < paddle_a.ycor() + 40 and ball.ycor() > paddle_a.ycor() -40):
+        ball.setx(-340)
+        ball.dx *=-1
